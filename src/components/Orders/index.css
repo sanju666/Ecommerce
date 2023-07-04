@@ -1,0 +1,12 @@
+.recent-orders-page {
+  background-image: url('https://th.bing.com/th/id/OIP.vz9iT32d42qNaQ934ei9TAHaF7?pid=ImgDet&w=1280&h=1024&rs=1');
+  width: 100%;
+  background-size: cover;
+  min-height: 100vh;
+  overflow: hidden;
+}
+@media screen and (max-width: 767px) {
+  .recent-orders-page {
+    width: 500px;
+  }
+}

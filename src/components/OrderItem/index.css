@@ -1,0 +1,37 @@
+.recent-image {
+  width: 80px;
+}
+.recent-order {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.orderId {
+  font-size: 19px;
+  margin-left: 10px;
+}
+.time {
+  margin-left: 10px;
+}
+
+.order-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.order-table td,
+.order-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.order-table {
+  border-collapse: collapse;
+}
+
+.order-table tr:hover {
+  background-color: #ddd;
+}
+@media screen and (max-width: 767px) {
+  .order-table {
+    overflow: hidden;
+    width: 20%;
+  }
+}

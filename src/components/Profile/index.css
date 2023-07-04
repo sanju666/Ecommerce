@@ -1,0 +1,41 @@
+.profile-image {
+  width: 100px;
+
+  border-radius: 50%;
+}
+.main-container {
+  font-family: 'Times New Roman', Times, serif;
+  padding: 30px;
+  font-size: 21px;
+  background-image: url('https://images.all-free-download.com/images/graphicthumb/wave_310746.jpg');
+  background-size: cover;
+  height: 100vh;
+}
+.Profile-section {
+  background-image: url('https://th.bing.com/th/id/OIP.biy_CeVbPn0PDKyvfIKghAAAAA?pid=ImgDet&rs=1');
+  border-radius: 10px;
+  opacity: 0.9;
+  width: 400px;
+  padding: 20px;
+}
+ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+.cm-button {
+  border-radius: 5px;
+  padding: 5px;
+  color: #ffffff;
+  background-color: #0967d2;
+  border: none;
+  margin-right: 8px;
+}
+span {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 767px) {
+  .Profile-section {
+    width: 300px;
+  }
+}

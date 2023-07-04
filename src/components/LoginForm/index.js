@@ -1,10 +1,11 @@
 import {Component} from 'react'
 import Cookies from 'js-cookie'
 import {Redirect} from 'react-router-dom'
+import CartContext from '../../context/CartContext'
 
 import './index.css'
 
-class LoginForm extends Component {
+export default class LoginForm extends Component {
   state = {
     username: '',
     password: '',
@@ -20,12 +21,17 @@ class LoginForm extends Component {
     this.setState({password: event.target.value})
   }
 
-  onSubmitSuccess = jwtToken => {
+  onSubmitSuccess = async jwtToken => {
     const {history} = this.props
-
+    const {username} = this.state
+    const v = this.context
+    console.log(v.user)
     Cookies.set('jwt_token', jwtToken, {
       expires: 30,
     })
+    const value = this.context
+    const {updateUsername} = value
+    updateUsername(username)
     history.replace('/')
   }
 
@@ -93,10 +99,17 @@ class LoginForm extends Component {
 
   render() {
     const {showSubmitError, errorMsg} = this.state
+
     const jwtToken = Cookies.get('jwt_token')
 
     if (jwtToken !== undefined) {
-      return <Redirect to="/" />
+      return (
+        <Redirect
+          to={{
+            pathname: '/',
+          }}
+        />
+      )
     }
 
     return (
@@ -129,4 +142,4 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm
+LoginForm.contextType = CartContext

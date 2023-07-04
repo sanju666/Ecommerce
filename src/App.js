@@ -9,16 +9,33 @@ import Cart from './components/Cart'
 import NotFound from './components/NotFound'
 import ProtectedRoute from './components/ProtectedRoute'
 import CartContext from './context/CartContext'
+import Profile from './components/Profile'
+import Orders from './components/Orders'
 
 import './App.css'
 
 class App extends Component {
   state = {
     cartList: [],
+    orderList: [],
+    user: 'rahul',
   }
 
   removeAllCartItems = () => {
     this.setState({cartList: []})
+  }
+
+  checkoutCartItems = () => {
+    const {orderList, cartList, user} = this.state
+    console.log(cartList)
+    const data = {
+      orderId: orderList.length,
+      data: cartList,
+      orderedDate: new Date(),
+      user,
+    }
+    this.setState({orderList: [...orderList, data], cartList: []})
+    console.log('jui')
   }
 
   incrementCartItemQuantity = id => {
@@ -65,6 +82,7 @@ class App extends Component {
     const productObject = cartList.find(
       eachCartItem => eachCartItem.id === product.id,
     )
+    console.log(productObject)
 
     if (productObject) {
       this.setState(prevState => ({
@@ -85,8 +103,13 @@ class App extends Component {
     }
   }
 
+  updateUsername = username => {
+    this.setState({user: username})
+  }
+
   render() {
-    const {cartList} = this.state
+    const {cartList, orderList, user} = this.state
+    console.log(orderList)
 
     return (
       <CartContext.Provider
@@ -97,6 +120,10 @@ class App extends Component {
           incrementCartItemQuantity: this.incrementCartItemQuantity,
           decrementCartItemQuantity: this.decrementCartItemQuantity,
           removeAllCartItems: this.removeAllCartItems,
+          updateUsername: this.updateUsername,
+          checkoutCartItems: this.checkoutCartItems,
+          user,
+          orderList,
         }}
       >
         <Switch>
@@ -109,6 +136,8 @@ class App extends Component {
             component={ProductItemDetails}
           />
           <ProtectedRoute exact path="/cart" component={Cart} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/orders" component={Orders} />
           <Route path="/not-found" component={NotFound} />
           <Redirect to="not-found" />
         </Switch>

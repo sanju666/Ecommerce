@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 
 import './index.css'
 
@@ -27,4 +27,4 @@ const ProductCard = props => {
     </li>
   )
 }
-export default ProductCard
+export default withRouter(ProductCard)
